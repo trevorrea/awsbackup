@@ -10,7 +10,7 @@ TAGVALUE=$2
 BACKUPTYPE=$3
 
 if [ "$#" -ne 3 ]; then
-    echo "Intended usage: iec2_create_ami.sh <EC2 Tag name> <EC2 Tag value> <Backup Type>"
+    echo "Intended usage: ec2_create_ami.sh <EC2 Tag name> <EC2 Tag value> <Backup Type>"
     exit 1
 fi
 
