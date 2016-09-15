@@ -16,13 +16,13 @@ fi
 
 case $RETENTION in
   #any number of numbers followed by a letter "d" or "days" multiplied by 1440 (number of seconds in a day)
-  [0-9]*d) UNIXRETENTION=$(( ${RETENTION%?} * 1440 )) ;;
+  [0-9]*d) UNIXRETENTION=$(( ${RETENTION%?} * 86400 )) ;;
   #any number of numbers followed by a letter "w" or "weeks" multiplied by 10080 (number of seconds in an week)
-  [0-9]*w) UNIXRETENTION=$(( ${RETENTION%?} * 10080 )) ;;
+  [0-9]*w) UNIXRETENTION=$(( ${RETENTION%?} * 604800 )) ;;
   #any number of numbers followed by a letter "m" or "months" multiplied by 43200 (number of seconds in a 30 day month)
-  [0-9]*m) UNIXRETENTION=$(( ${RETENTION%?} * 43200 ));;
+  [0-9]*m) UNIXRETENTION=$(( ${RETENTION%?} * 2419200 ));;
   #no trailing digits default is days - multiply by 86400 (number of seconds in a day)
-  *) UNIXRETENTION=$(( ${RETENTION%?} * 1440 ));;
+  *) UNIXRETENTION=$(( ${RETENTION%?} * 86400 ));;
 esac
 
 AMIIDS=$(aws ec2 describe-images --owner self --output text --filter Name=tag:Type,Values="$BACKUPTYPE" --query Images[].ImageId[])
